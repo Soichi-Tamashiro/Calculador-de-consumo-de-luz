@@ -15,8 +15,9 @@ class SecondWindow(Screen, Widget):
 
 
 class WindowManager(ScreenManager):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, **kwargs):
+        super().__init__( **kwargs)
+        self.a = App.get_running_app()
         #
         # @mainthread
         # def delayed():
@@ -24,9 +25,13 @@ class WindowManager(ScreenManager):
         #     secondwindow = self.get_screen('second')
         # delayed()
     @mainthread
-    def update(self, text):
+    def update(self):
         mainwindow = self.get_screen('main')
         secondwindow = self.get_screen('second')
+
+        # cargofijo=self.ids.WindowManager.MainWindow.cargo_fijo.text
+        # self.cargo_fijo_2.text = cargofijo
+        # print(cargofijo)
         pass
 
 # kv = Builder.load_file("mymain.kv")
@@ -34,7 +39,7 @@ class WindowManager(ScreenManager):
 
 class MainApp(App):
     def build(self):
-        self.load_kv('main.kv')
+        # self.load_kv('main.kv')
         return WindowManager()
 
 

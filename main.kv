@@ -30,12 +30,19 @@
             height: (root.height) * 0.05 * 2
             text: "Calcular"
             on_press:
-                root.btn()
+                root.manager.update()
             on_release:
                 root.manager.current = 'second'
 <SecondWindow>
     GridLayout:
         cols: 1
+        BoxLayout
+            Label
+                text: "Cargo Fijo"
+            TextInput
+                id: cargo_fijo_2
+                multiline:False
+                readonly: True
         Button
             text: "Return"
             on_press: root.manager.current = 'main'
