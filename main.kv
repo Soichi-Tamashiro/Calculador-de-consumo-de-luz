@@ -5,6 +5,7 @@
         name: "second"
 
 <MainWindow>
+    cargo_fijo:cargo_fijo
     GridLayout:
         cols: 1
         orientation: "Vertical"
@@ -26,11 +27,12 @@
                 multiline:False
                 # readonly: True
         Button
+            id: botonazo
             size_hint: (.1, None)
             height: (root.height) * 0.05 * 2
             text: "Calcular"
             on_press:
-                root.manager.update()
+                root.btn(self)
             on_release:
                 root.manager.current = 'second'
 <SecondWindow>
@@ -45,4 +47,6 @@
                 readonly: True
         Button
             text: "Return"
-            on_press: root.manager.current = 'main'
+            on_press:
+                # root.btn()
+                root.manager.current = 'main'
