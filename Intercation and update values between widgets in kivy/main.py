@@ -16,7 +16,7 @@ class MainWindow(Screen):
         b.big_dict = dict.fromkeys(self.ids.keys(), 1)
         b.big_dict['botonazo'] = "Cotizar"
         # b.big_dict['cargo_fijo']=float(self.cargo_fijo.text)
-        # b.big_dict['cargo_fijo'] = str(float(self.cargo_fijo.text)*5)
+        b.big_dict['cargo_fijo'] = str(float(self.cargo_fijo.text)*5)
         # print(self.ids.keys())
         print(b.big_dict)
     pass
@@ -27,7 +27,7 @@ class SecondWindow(Screen, Widget):
 
     def on_enter(self, *args):
         c = App.get_running_app()
-        # self.cargo_fijo_2.text = c.big_dict["cargo_fijo"]
+        self.cargo_fijo_2.text = c.big_dict["cargo_fijo"]
         # print(c.big_dict["cargo_fijo"])
         print("Gear Secondo")
 

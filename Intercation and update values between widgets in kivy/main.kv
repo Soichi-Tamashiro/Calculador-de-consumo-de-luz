@@ -1,0 +1,53 @@
+<WindowManager>:
+    MainWindow:
+        name: "main"
+    SecondWindow:
+        name: "second"
+
+<MainWindow>
+    cargo_fijo:cargo_fijo
+    GridLayout:
+        cols: 1
+        orientation: "Vertical"
+        Label
+            text: "Cálculo Consumo de Luz"
+        BoxLayout
+            orientation: "horizontal"
+            Label
+                text: "Descripción"
+            Label
+                text: "Precio Unitario"
+            Label
+                text: "Importe"
+        BoxLayout
+            Label
+                text: "Cargo Fijo"
+            TextInput
+                id: cargo_fijo
+                multiline:False
+                # readonly: True
+        Button
+            id: botonazo
+            size_hint: (.1, None)
+            height: (root.height) * 0.05 * 2
+            text: "Calcular"
+            on_press:
+                root.btn(self)
+            on_release:
+                root.manager.current = 'second'
+<SecondWindow>
+    cargo_fijo_2:cargo_fijo_2
+    GridLayout:
+        cols: 1
+        BoxLayout
+            Label
+                text: "Cargo Fijo"
+            TextInput
+                id: cargo_fijo_2
+                multiline:False
+                readonly: True
+        Button
+            text: "Return"
+            on_press:
+                # root.btn()
+                root.manager.current = 'main'
