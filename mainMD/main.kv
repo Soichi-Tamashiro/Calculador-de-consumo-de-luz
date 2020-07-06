@@ -1,0 +1,159 @@
+#:import hex kivy.utils.get_color_from_hex
+<MyLabel@MDLabel>:
+    # text_size : self.size
+    valign: 'center'
+    # font_style: 'H1'
+    color: 0,0,0,1
+<MyTextInput@MDTextField>:
+    input_filter: 'float'
+    write_tab: False
+    # on_text_validate:
+    multiline:False
+    # size_hint: 1, None
+    height: "30dp"
+<WindowManager>:
+    canvas.before:
+        Color:
+            rgba: hex('#0466C8')
+            # rgba: hex('ffca3a')
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    MainWindow:
+        name: "main"
+    SecondWindow:
+        name: "second"
+
+<MainWindow>
+    cargo_fijo:cargo_fijo
+    factor:factor
+    MDGridLayout:
+        cols: 1
+        orientation: "vertical"
+        MDToolbar:
+            title: "Cálculo  de Consumo de Luz"
+            md_bg_color: app.theme_cls.accent_color
+        MDGridLayout
+            cols:4
+            orientation: "horizontal"
+            MDBoxLayout
+                size_hint_x: .05
+            MDBoxLayout
+                orientation: "vertical"
+
+                MyLabel
+                    text: "Descripción"
+                MyLabel
+                    text: "Cargo Fijo"
+                MyLabel
+                    text: "Mant. y Reposición de Conexión"
+                MyLabel
+                    text: "Consumo de Energía ( KWh*Precio Unitario)"
+                MyLabel
+                    text: "Alumbrado Público"
+                MyLabel
+                    text: "IGV"
+                MyLabel
+                    text: "Electrificación rural"
+                MyLabel
+                    text: "Total"
+                MyLabel
+                    text: "Reajuste al mes siguiente"
+                MyLabel
+                    text: "KWh mes actual"
+                MyLabel
+                    text: "KWh mes anterior"
+                MyLabel
+                    text: "Consumo KWh"
+            MDBoxLayout
+                size_hint_x: .4
+                orientation: "vertical"
+                MDLabel
+                    text: "Precio Unitario"
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+                MyTextInput
+                    id: factor
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+                MyTextInput
+                    id: factor_rural
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+                MDLabel
+                    text: ""
+
+            MDBoxLayout
+                orientation: "vertical"
+                size_hint_x: .3
+                MDLabel
+                    text: "Importe"
+
+                MyTextInput
+                    id: cargo_fijo
+
+                MyTextInput
+                    id: mantenimiento
+
+                MyTextInput
+                    id: KWh
+
+                MyTextInput
+                    id: Alum_Pub
+
+                MyTextInput
+                    id: IGV
+
+                MyTextInput
+                    id: Elec_Rural
+
+                MyTextInput
+                    id: Total
+
+                MyTextInput
+                    id: Reajuste
+
+                MyTextInput
+                    id: KWh_act
+
+                MyTextInput
+                    id: KWh_ant
+
+                MyTextInput
+                    id: Consumo_KWh
+
+        MDRectangleFlatIconButton
+            id: botonazo
+            icon:"cash-usd-outline"
+            size_hint: (.1, None)
+            height: (root.height) * 0.05 * 2
+            text: "Calcular"
+            on_press:
+                root.btn(self)
+            on_release:
+                root.manager.current = 'second'
+<SecondWindow>
+    cargo_fijo_2:cargo_fijo_2
+    MDGridLayout:
+        cols: 1
+        MDBoxLayout
+            MDLabel
+                text: "Cargo Fijo"
+            MyTextInput
+                id: cargo_fijo_2
+                readonly: True
+        Button
+            text: "Return"
+            on_press:
+                # root.btn()
+                root.manager.current = 'main'
